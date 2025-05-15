@@ -57,7 +57,9 @@ O programa retorna a massa de cada elemento que deve ser usada para atingir a pr
 Exemplo de saída:
 
 Massas estequiométricas:
+
 1.0 x Ti: 0.0362875 g
+
 2.0 x Te: 0.1637125 g
 
 
@@ -74,6 +76,8 @@ Para o composto TiTe2, com massa total de 200 g:
 Saída esperada:
 
 Massas estequiométricas:
+
 1.0 x Ti: 0.0362875 g
+
 2.0 x Te: 0.1637125 g
 
