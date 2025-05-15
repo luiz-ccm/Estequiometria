@@ -67,7 +67,7 @@ Massas estequiométricas:
 
 ## Exemplo de uso
 
-Para o composto TiTe2, com massa total de 200 g:
+Para o composto TiTe2, com massa total de 0.2g:
 
 - Símbolos: Ti, Te
 - Proporções x: 1, 2
