@@ -12,7 +12,7 @@ A forma mais fácil de usar este código é através do Google Colab, onde você
 
 - Acesse o site [https://colab.research.google.com](https://colab.research.google.com)
 - Copie e cole o código
-- Execute célula por célula
+- Execute a célula
 
 ### 2. No seu computador (uso local)
 
