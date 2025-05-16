@@ -43,7 +43,7 @@ def parse_formula(formula):
     return simbolos, proporcoes
 
 # Interação com o usuário
-formula = input("Digite o composto químico (ex: Ni0.5Te2 ou NiTe2): ").strip()
+formula = input("Digite o composto (ex: Ni0.5Te2 / NiTe2): ").strip()
 massa_total = float(input("Digite a massa total do composto (em gramas): "))
 
 try:
