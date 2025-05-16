@@ -1,4 +1,5 @@
 import numpy as np
+import re
 
 massa_molar_rounded = {
     'Al': 26.982, 'Sb': 121.76, 'Ar': 39.95, 'As': 74.922, 'Ba': 137.33, 'Be': 9.0122, 'Bi': 208.98, 'B': 10.81,
@@ -14,6 +15,8 @@ massa_molar_rounded = {
     'Yb': 173.05, 'Y': 88.906, 'Zn': 65.38, 'Zr': 91.224
 }
 
+
+
 def massa_molar(simbolo):
     return massa_molar_rounded.get(simbolo, None)
 
@@ -26,23 +29,31 @@ def estq(MM_ls, x_ls, massa_total):
         massa_esteq = np.append(massa_esteq, massa_i)
     return massa_esteq
 
+def parse_formula(formula):
+    padrao = r'([A-Z][a-z]?)(\d*\.?\d*)'  # aceita inteiros ou decimais
+    elementos = re.findall(padrao, formula)
+    simbolos = []
+    proporcoes = []
+    for simbolo, quantidade in elementos:
+        MM = massa_molar(simbolo)
+        if MM is None:
+            raise ValueError(f"Elemento '{simbolo}' não encontrado na tabela.")
+        simbolos.append(simbolo)
+        proporcoes.append(float(quantidade) if quantidade else 1.0)
+    return simbolos, proporcoes
+
 # Interação com o usuário
-num_elementos = int(input("Quantos elementos deseja analisar? "))
-
-MM_ls = []
-x_ls = []
-
-for i in range(num_elementos):
-    simbolo = input(f"Digite o símbolo do elemento {i+1}: ").strip().capitalize()
-    MM = massa_molar(simbolo)
-    if MM is None:
-        print(f"Símbolo '{simbolo}' não encontrado. Tente novamente.")
-        exit()
-    x = float(input(f"Digite o valor de x (proporção estequiométrica) para {simbolo}: "))
-    MM_ls.append(MM)
-    x_ls.append(x)
-
+formula = input("Digite o composto químico (ex: Ni0.5Te2 ou NiTe2): ").strip()
 massa_total = float(input("Digite a massa total do composto (em gramas): "))
+
+try:
+    simbolos, proporcoes = parse_formula(formula)
+except ValueError as e:
+    print(e)
+    exit()
+
+MM_ls = [massa_molar(s) for s in simbolos]
+x_ls = proporcoes
 
 MM_array = np.array(MM_ls)
 x_array = np.array(x_ls)
@@ -50,5 +61,5 @@ x_array = np.array(x_ls)
 resultado = estq(MM_array, x_array, massa_total)
 
 print("\nMassas estequiométricas:")
-for i in range(num_elementos):
-    print(f"{x_ls[i]} × {list(massa_molar_rounded.keys())[list(massa_molar_rounded.values()).index(MM_ls[i])]}: {resultado[i]:.4f} g")
+for i in range(len(simbolos)):
+    print(f"{x_ls[i]} × {simbolos[i]}: {resultado[i]:.4f} g")
