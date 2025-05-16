@@ -24,11 +24,10 @@ Você também pode rodar o código localmente. Para isso, é necessário ter o P
 
 Ao rodar o código, ele irá solicitar:
 
-1. Quantos elementos fazem parte do composto.
-2. Para cada elemento:
-   - O símbolo químico (ex: Ti, O, Fe, etc.)
-   - O valor de x (proporção estequiométrica).
-3. A massa total da amostra (em gramas).
+1. Qual o composto. 
+  - A divisão é feita pelas letras maiúsculas;
+  - Caso não tenha um número após o elemento ele irá considerar 1.
+2. A massa total da amostra (em gramas).
 
 ---
 
@@ -68,10 +67,11 @@ Massas estequiométricas:
 ## Exemplo de uso
 
 Para o composto TiTe2, com massa total de 0.2g:
-
-- Símbolos: Ti, Te
-- Proporções x: 1, 2
-- Massa total: 0.2
+- Basta colocar TiTe2 e a massa como 0.2
+- O programa irá considerar:
+  - Símbolos: Ti, Te
+  - Proporções x: 1, 2
+  - Massa total: 0.2
 
 Saída esperada:
 
